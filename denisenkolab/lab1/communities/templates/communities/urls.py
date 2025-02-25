@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.urls import path
+from . import views
 
-def posts_list(req):
-    return render(req, 'posts/posts_list.html')
+urlpatterns = [
+    path('', views.communities_list),
+]

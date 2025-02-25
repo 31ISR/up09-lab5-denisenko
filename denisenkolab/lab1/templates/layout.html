@@ -14,8 +14,29 @@
             <ul>
                 <li><a href="/ ">Главная</a></li>
                 <li><a href="/about/">Обо мне</a></li>
-                <li><a href="/posts/">Посты</a></li>
-                <li><a href="/communities/">Сообщества</a></li>
+                <li><a href="{% url 'posts:list' %}">Посты</a></li>
+                <li><a href="{% url 'communities:list' %}">Сообщества</a></li>
+                <li><a href="{% url 'posts:new-post' %}">Новый пост</a></li>
+                <li><a href="{% url 'communities:new-community' %}">Новое сообщество</a></li>
+                <li></li>
+                
+                <li>
+                    {% if user.is_authenticated %}
+                    <form class="logout" action="{% url 'users:logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" title="User Logout">Выйти</button>
+                        </form>
+                    </li>
+                    <li>
+                    {% else %}
+                        <a href="{% url 'users:register' %}">
+                            Зарегистрироваться
+                        </a>
+                        |
+                        <a href="{% url 'users:login' %}">
+                            Войти
+                        </a>
+                    {% endif %}</li>
             </ul>
         </nav>
 
